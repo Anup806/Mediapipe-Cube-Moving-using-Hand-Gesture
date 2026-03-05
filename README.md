@@ -121,41 +121,41 @@ An on-screen diagnostic display shows:
 ## System Workflow
 
 ```
-┌──────────────────────────────────────────────────────────────────┐
-│  1. Camera Feed                                                  │
-│     Device camera captured every frame by MediaPipe solution     │
-├──────────────────────────────────────────────────────────────────┤
-│  2. Hand Landmark Detection                                      │
-│     MediaPipe Hands model infers 21 3D landmarks per hand        │
-│     • Wrist (0), Thumb (1–4), Index (5–8), Middle (9–12), etc.   │
-├──────────────────────────────────────────────────────────────────┤
-│  3. Gesture Classification                                       │
-│     HandGestureController.cs reads landmark coordinates:         │
-│     • Computes Euclidean distance between:                       │
-│       - Thumb tip (landmark 4) and Index tip (landmark 8)        │
-│       - Thumb tip and Middle tip (landmark 12)                   │
-│     • Distance < pinchThreshold → PINCH DETECTED                 │
-├──────────────────────────────────────────────────────────────────┤
-│  4. Cube Movement & Transform Mapping                            │
-│     PRIMARY FEATURE: 2-finger pinch near cube                    │
-│     → Grab & Move (translate cube in world space)                │
-│     • Hand position mapped from camera space to screen space     │
+┌──────────────────────────────────────────────────────────────────────┐
+│  1. Camera Feed                                                      │
+│     Device camera captured every frame by MediaPipe solution         │
+├──────────────────────────────────────────────────────────────────────┤
+│  2. Hand Landmark Detection                                          │
+│     MediaPipe Hands model infers 21 3D landmarks per hand            │
+│     • Wrist (0), Thumb (1–4), Index (5–8), Middle (9–12), etc.       │
+├──────────────────────────────────────────────────────────────────────┤
+│  3. Gesture Classification                                           │
+│     HandGestureController.cs reads landmark coordinates:             │
+│     • Computes Euclidean distance between:                           │
+│       - Thumb tip (landmark 4) and Index tip (landmark 8)            │
+│       - Thumb tip and Middle tip (landmark 12)                       │
+│     • Distance < pinchThreshold → PINCH DETECTED                     │
+├──────────────────────────────────────────────────────────────────────┤
+│  4. Cube Movement & Transform Mapping                                │
+│     PRIMARY FEATURE: 2-finger pinch near cube                        │
+│     → Grab & Move (translate cube in world space)                    │
+│     • Hand position mapped from camera space to screen space         │
 │     • Cube follows hand movement in real-time via Transform.position │
-│                                                                  │
-│     EXTENDED FEATURES:                                           │
-│     • 2-hand pinch → Scale (min 0.2x – max 3x)                   │
-│     • 3-finger pinch + movement → Rotate (X & Y axes)            │
-├──────────────────────────────────────────────────────────────────┤
-│  5. Visual & Haptic Feedback                                     │
-│     • Color changes (Material.color)                             │
-│     • Trail rendering (TrailRenderer component)                  │
-│     • Glow effect (Emission shader property)                     │
-│     • Shake animation (Transform.localScale oscillation)         │
-├──────────────────────────────────────────────────────────────────┤
-│  6. HUD Overlay Rendering                                        │
-│     OnGUI() renders diagnostic information:                      │
-│     • Gesture name, cube position, scale, rotation, FPS          │
-└──────────────────────────────────────────────────────────────────┘
+│                                                                      │
+│     EXTENDED FEATURES:                                               │
+│     • 2-hand pinch → Scale (min 0.2x – max 3x)                       │
+│     • 3-finger pinch + movement → Rotate (X & Y axes)                │
+├──────────────────────────────────────────────────────────────────────┤
+│  5. Visual & Haptic Feedback                                         │
+│     • Color changes (Material.color)                                 │
+│     • Trail rendering (TrailRenderer component)                      │
+│     • Glow effect (Emission shader property)                         │
+│     • Shake animation (Transform.localScale oscillation)             │
+├──────────────────────────────────────────────────────────────────────┤
+│  6. HUD Overlay Rendering                                            │
+│     OnGUI() renders diagnostic information:                          │
+│     • Gesture name, cube position, scale, rotation, FPS              │
+└──────────────────────────────────────────────────────────────────────┘
 ```
 
 ### Gesture Detection Algorithm
@@ -185,7 +185,7 @@ This table shows all supported gestures and their corresponding actions. **Recru
 
 | Gesture | Action | Priority | Visual Feedback |
 |---------|--------|----------|-----------------|
-| ✌️ **Two-finger pinch** (near cube) | **Grab and move the cube** — drag in real-time | 🎯 **PRIMARY** | Green cube + cyan trail |
+| ✌️ **Two-finger pinch** (near cube) | **Grab and move the cube** — drag in real-time | **PRIMARY** | Green cube + cyan trail |
 | 🖐️ **Open hand near cube** | Hover — proximity detection | Secondary | Yellow glow pulse |
 | 🤏🤏 **Both hands pinching** | Scale cube (spread = bigger, pinch = smaller) | Extended | Magenta cube + shake feedback |
 | 🤟 **Three-finger pinch** + move left/right | Rotate cube around Y-axis | Extended | Orange cube |
