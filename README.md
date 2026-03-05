@@ -2,7 +2,7 @@
 
 A real-time interactive Unity application that uses **MediaPipe Unity Plugin** and your device's camera to **move a 3D cube using hand gestures**. Simply pinch your fingers and drag to move the cube across your screen in real-time — no controllers, no touch, just your hands!
 
----
+--
 
 ## Project Overview
 
@@ -93,8 +93,8 @@ An on-screen display shows:
 │     • Cube follows hand movement in real-time                    │
 │                                                                  │
 │     EXTENDED:                                                    │
-│     • 2-hand pinch → Scale (min 0.2x – max 3x)                  │
-│     • 3-finger pinch + movement → Rotate (X & Y axes)           │
+│     • 2-hand pinch → Scale (min 0.2x – max 3x)                   │
+│     • 3-finger pinch + movement → Rotate (X & Y axes)            │
 ├──────────────────────────────────────────────────────────────────┤
 │  5. Visual & Haptic Feedback                                     │
 │     Colour, trail, glow, and shake effects applied each frame    │
